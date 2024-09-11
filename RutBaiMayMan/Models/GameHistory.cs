@@ -8,5 +8,10 @@ namespace RutBaiMayMan.Models
 {
     internal class GameHistory
     {
+        public int GameHistoryId { get; set; }
+        public int PlayerOneId { get; set; }
+        public int PlayerTwoId { get; set; }
+        public GameResult Result { get; set; }
+        public DateTime PlayedAt { get; set; }
     }
 }
