@@ -10,6 +10,7 @@ namespace RutBaiMayMan.Models
     {
         public int CardId { get; set; }
         public string Suit { get; set; } = string.Empty;
+        public string Rank { get; set; } = string.Empty;
         public int Value { get; set; } = 0;
     }
 }

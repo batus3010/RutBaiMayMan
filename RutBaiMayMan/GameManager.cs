@@ -17,7 +17,7 @@ namespace RutBaiMayMan
             {
                 Player1 = player1,
                 Player2 = player2,
-                Cards = new List<Card>(),
+                Cards = GetRandomCards(),
                 Player1Score = 0,
                 Player2Score = 0,
                 PlayedAt = DateTime.Now
@@ -65,7 +65,8 @@ namespace RutBaiMayMan
                     cardsDrawn.Add(new Card
                     {
                         Suit = cardIcon,
-                        Value = GetCardValue(cardNumber)
+                        Value = GetCardValue(cardNumber),
+                        Rank = cardNumber
                     });
                 }
             }
