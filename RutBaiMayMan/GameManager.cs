@@ -23,11 +23,16 @@ namespace RutBaiMayMan
                 PlayedAt = DateTime.Now
             };
 
+            game.Player1Cards = Get3RandomCardsForPlayer(game.Cards);
+            game.Player2Cards = Get3RandomCardsForPlayer(game.Cards);
+
             return game;
         }
 
-        public GameResult DetermineWinner(Game game, int player1Score, int player2Score)
+        public GameResult DetermineWinner(Game game)
         {
+            int player1Score = CalculateScore(game.Player1Cards);
+            int player2Score = CalculateScore(game.Player2Cards);
             game.Player1Score = player1Score;
             game.Player2Score = player2Score;
             if (player1Score > player2Score)
@@ -74,7 +79,34 @@ namespace RutBaiMayMan
             return cardsDrawn;
         }
 
-        private int GetCardValue(string cardNumber)
+        private List<Card> Get3RandomCardsForPlayer(List<Card> cardsDrawn)
+        {
+            List<Card> playerCards = new List<Card>();
+            HashSet<int> drawnIndexes = new HashSet<int>(); // track already drawn indexes
+
+            while (playerCards.Count < 3)
+            {
+                int index = _random.Next(cardsDrawn.Count);
+
+                // Check if the card was already drawn
+                if (!drawnIndexes.Contains(index))
+                {
+                    drawnIndexes.Add(index);
+
+                    // Add to the list of player cards
+                    playerCards.Add(cardsDrawn[index]);
+                }
+            }
+
+            return playerCards;
+        }
+
+        private int CalculateScore(List<Card> playerCards)
+        {
+            return playerCards.Sum(c => c.Value);
+        }
+
+        public int GetCardValue(string cardNumber)
         {
             // Convert card number to its corresponding value for game logic
             return cardNumber switch
