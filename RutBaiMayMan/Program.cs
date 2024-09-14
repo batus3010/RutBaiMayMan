@@ -21,10 +21,14 @@ namespace RutBaiMayMan
                     AnsiConsole.MarkupLine($"{player1.Username} draws {card.Rank} of {card.Suit}");
                 }
 
+                Console.WriteLine();
+
                 foreach (var card in game.Player2Cards)
                 {
                     AnsiConsole.MarkupLine($"{player2.Username} draws {card.Rank} of {card.Suit}");
                 }
+
+                Console.WriteLine();
 
 
                 GameResult result = gameManager.DetermineWinner(game);
